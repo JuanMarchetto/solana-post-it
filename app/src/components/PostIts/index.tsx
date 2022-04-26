@@ -72,7 +72,7 @@ const PostItScreen = () => {
     }
   };
 
-  const onpostitSent = (newPostIt: unknown) => {
+  const onPostitSent = (newPostIt: unknown) => {
     setPostIts((prevState) => [
       ...prevState,
       newPostIt,
@@ -83,7 +83,7 @@ const PostItScreen = () => {
     <div className="rounded-lg shadow flex">
       <div className="flex flex-col items-center justify-center">
         <div className="text-xs">
-          <NetPostIt onpostitSent={onpostitSent} />
+          <NetPostIt onPostitSent={onPostitSent} />
           {postits.map((t: any) => (
             <PostIt key={(t as any).key} content={t} />
           ))}
@@ -94,10 +94,10 @@ const PostItScreen = () => {
 };
 
 type NetPostIt = {
-  onpostitSent: (t: any) => void;
+  onPostitSent: (t: any) => void;
 };
 
-const NetPostIt: FC<NetPostIt> = ({ onpostitSent }) => {
+const NetPostIt: FC<NetPostIt> = ({ onPostitSent }) => {
   const wallet: any = useAnchorWallet();
   const { program } = useProgram({ connection, wallet });
   const [content, setContent] = useState<string>("");
@@ -121,7 +121,7 @@ const NetPostIt: FC<NetPostIt> = ({ onpostitSent }) => {
       y
     });
     setContent("");
-    onpostitSent(postit);
+    onPostitSent(postit);
   };
 
   return (

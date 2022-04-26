@@ -44,16 +44,16 @@ pub struct PostIt {
 
 const DISCRIMINATOR_LENGTH: usize = 8;
 const PUBLIC_KEY_LENGTH: usize = 32;
-const STRING_LENGTH_PREFIX: usize = 4; // Stores the size of the string.
-const MAX_CONTENT_LENGTH: usize = 280 * 4; // 280 chars max.
+const STRING_LENGTH_PREFIX: usize = 4;
+const MAX_CONTENT_LENGTH: usize = 280 * 4;
 const X_LENGTH: usize = 1;
 const Y_LENGTH: usize = 1;
 
 impl PostIt {
     const LEN: usize = DISCRIMINATOR_LENGTH
-        + PUBLIC_KEY_LENGTH // Author.
-        + STRING_LENGTH_PREFIX + MAX_CONTENT_LENGTH // Content.
-        + X_LENGTH + Y_LENGTH; // Coordinates.
+        + PUBLIC_KEY_LENGTH
+        + STRING_LENGTH_PREFIX + MAX_CONTENT_LENGTH
+        + X_LENGTH + Y_LENGTH;
 }
 
 #[error_code]
