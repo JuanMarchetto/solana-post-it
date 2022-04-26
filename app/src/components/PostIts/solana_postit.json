@@ -1,0 +1,82 @@
+{
+  "version": "0.1.0",
+  "name": "solana_postit",
+  "instructions": [
+    {
+      "name": "sendPostit",
+      "accounts": [
+        {
+          "name": "postit",
+          "isMut": true,
+          "isSigner": true
+        },
+        {
+          "name": "author",
+          "isMut": true,
+          "isSigner": true
+        },
+        {
+          "name": "systemProgram",
+          "isMut": false,
+          "isSigner": false
+        }
+      ],
+      "args": [
+        {
+          "name": "content",
+          "type": "string"
+        },
+        {
+          "name": "x",
+          "type": "u8"
+        },
+        {
+          "name": "y",
+          "type": "u8"
+        }
+      ],
+      "returns": null
+    }
+  ],
+  "accounts": [
+    {
+      "name": "PostIt",
+      "type": {
+        "kind": "struct",
+        "fields": [
+          {
+            "name": "author",
+            "type": "publicKey"
+          },
+          {
+            "name": "content",
+            "type": "string"
+          },
+          {
+            "name": "x",
+            "type": "u8"
+          },
+          {
+            "name": "y",
+            "type": "u8"
+          }
+        ]
+      }
+    }
+  ],
+  "errors": [
+    {
+      "code": 6000,
+      "name": "CoordinatesOutOfBounds",
+      "msg": "The x and y coordinates must be between 0 and 100"
+    },
+    {
+      "code": 6001,
+      "name": "ContentTooLong",
+      "msg": "The provided content should be 280 characters long maximum."
+    }
+  ],
+  "metadata": {
+    "address": "3H1vAFf2Lbv2GRhddLQXryf6Ci23ucn4DdMGFrjMFsem"
+  }
+}
