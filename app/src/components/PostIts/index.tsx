@@ -80,16 +80,14 @@ const PostItScreen = () => {
   };
 
   return (
-    <div className="rounded-lg shadow flex">
-      <div className="flex flex-col items-center justify-center">
         <div className="text-xs">
           <NetPostIt onPostitSent={onPostitSent} />
-          {postits.map((t: any) => (
-            <PostIt key={(t as any).key} content={t} />
-          ))}
+          <div className="relative m-auto border border-gray-900">
+            {postits.map((t: any) => (
+              <PostIt key={(t as any).key} content={t.content} y={t.y} x={t.x} />
+            ))}
+          </div>
         </div>
-      </div>
-    </div>
   );
 };
 
@@ -144,9 +142,17 @@ const NetPostIt: FC<NetPostIt> = ({ onPostitSent }) => {
   );
 };
 
-const PostIt = ({ content }: any) => {
+const PostIt = ({ content, x, y }: any) => {
   console.log("content", content);
   return (
-    <div className="p-2 border border-gray-500 border-b-0 flex text-xl">{content.content}</div>
+    <div
+      className="p-2 border border-gray-500 border-b-0 flex text-xl w-72 h-72 bg-yellow-500 absolute"
+      style={{
+        top: `${y/255 * 100}%`,
+        left: `${x/255 * 100}%`,
+      }}
+    >
+      {content}
+    </div>
   );
 };

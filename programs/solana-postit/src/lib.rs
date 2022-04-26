@@ -13,9 +13,6 @@ pub mod solana_postit {
         if content.chars().count() > 280 {
             return Err(ErrorCode::ContentTooLong.into())
         }
-        if x > 100 || y > 100 {
-            return Err(ErrorCode::CoordinatesOutOfBounds.into())
-        }
 
         postit.author = *author.key;
         postit.y = y;
@@ -58,8 +55,6 @@ impl PostIt {
 
 #[error_code]
 pub enum ErrorCode {
-    #[msg("The x and y coordinates must be between 0 and 100")]
-    CoordinatesOutOfBounds,
     #[msg("The provided content should be 280 characters long maximum.")]
     ContentTooLong,
 }
