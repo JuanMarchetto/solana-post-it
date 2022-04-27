@@ -31,22 +31,22 @@ export const SolanaPostItView: FC = ({ }) => {
 
   return (
     <>
-      <SolanaLogo />
-      <WalletMultiButton />
-      <button
-        className=" m-4 p-4 bg-green-500 text-white font-bold rounded"
-        onClick={airdropToWallet}
-      >
-        Airdrop 1 SOL to your test wallet
-      </button>
+      <nav>
+        <SolanaLogo />
+        <WalletMultiButton />
+        <button
+          className=" m-4 p-4 bg-green-500 text-white font-bold rounded"
+          onClick={airdropToWallet}
+        >
+          Airdrop 1 SOL to your test wallet
+        </button>
+      </nav>
       {isAirDropped ? <div>Sent!</div> : null}
-      <div>
-        {!wallet ? (
-          <SelectAndConnectWalletButton onUseWalletClick={() => { }} />
-        ) : (
-          <PostItScreen />
-        )}
-      </div>
+      {!wallet ? (
+        <SelectAndConnectWalletButton onUseWalletClick={() => { }} />
+      ) : (
+        <PostItScreen />
+      )}
     </>
   );
 };
@@ -55,11 +55,10 @@ const PostItScreen = () => {
   const wallet: any = useAnchorWallet();
   const [postits, setPostIts] = useState<unknown[]>([]);
   const { program } = useProgram({ connection, wallet });
-  const [lastUpdatedTime, setLastUpdatedTime] = useState<number>();
 
   useEffect(() => {
     fetchPostIts();
-  }, [wallet, lastUpdatedTime]);
+  }, [wallet]);
 
   const fetchPostIts = async () => {
     if (wallet && program) {
@@ -80,14 +79,16 @@ const PostItScreen = () => {
   };
 
   return (
-        <div className="text-xs">
-          <NetPostIt onPostitSent={onPostitSent} />
-          <div className="relative m-auto border border-gray-900">
-            {postits.map((t: any) => (
-              <PostIt key={(t as any).key} content={t.content} y={t.y} x={t.x} />
-            ))}
-          </div>
+    <>
+      <NetPostIt onPostitSent={onPostitSent} />
+      <div className="text-xs w-screen h-screen overflow-hidden m-0 p-32 bg-gray-200">
+        <div className="relative m-auto border border-gray-900 w-5/6 h-[500px]">
+          {postits.map((t: any) => (
+            <PostIt key={(t as any).key} content={t.content} y={t.y} x={t.x} />
+          ))}
         </div>
+      </div>
+    </>
   );
 };
 
@@ -99,8 +100,8 @@ const NetPostIt: FC<NetPostIt> = ({ onPostitSent }) => {
   const wallet: any = useAnchorWallet();
   const { program } = useProgram({ connection, wallet });
   const [content, setContent] = useState<string>("");
-  const [x, setX] = useState<number>(0);
-  const [y, setY] = useState<number>(0);
+  const [x, setX] = useState<number>(255);
+  const [y, setY] = useState<number>(255);
 
   const onContentChange = (e: React.ChangeEvent<HTMLTextAreaElement>) => {
     const { value } = e.target;
@@ -143,13 +144,12 @@ const NetPostIt: FC<NetPostIt> = ({ onPostitSent }) => {
 };
 
 const PostIt = ({ content, x, y }: any) => {
-  console.log("content", content);
   return (
     <div
-      className="p-2 border border-gray-500 border-b-0 flex text-xl w-72 h-72 bg-yellow-500 absolute"
+      className="p-2 border border-gray-500 border-b-0 flex text-xl w-72 h-72 bg-yellow-500 absolute transform -translate-x-1/2 -translate-y-1/2"
       style={{
-        top: `${y/255 * 100}%`,
-        left: `${x/255 * 100}%`,
+        top: `${y / 255 * 100}%`,
+        left: `${x / 255 * 100}%`,
       }}
     >
       {content}

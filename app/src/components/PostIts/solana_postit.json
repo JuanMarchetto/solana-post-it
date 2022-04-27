@@ -67,11 +67,6 @@
   "errors": [
     {
       "code": 6000,
-      "name": "CoordinatesOutOfBounds",
-      "msg": "The x and y coordinates must be between 0 and 100"
-    },
-    {
-      "code": 6001,
       "name": "ContentTooLong",
       "msg": "The provided content should be 280 characters long maximum."
     }
