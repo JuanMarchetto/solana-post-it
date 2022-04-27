@@ -10,7 +10,7 @@ pub mod solana_postit {
         let author: &Signer = &ctx.accounts.author;
         let clock: Clock = Clock::get().unwrap();
 
-        if content.chars().count() > 280 {
+        if content.chars().count() > 255 {
             return Err(ErrorCode::ContentTooLong.into())
         }
 
@@ -42,7 +42,7 @@ pub struct PostIt {
 const DISCRIMINATOR_LENGTH: usize = 8;
 const PUBLIC_KEY_LENGTH: usize = 32;
 const STRING_LENGTH_PREFIX: usize = 4;
-const MAX_CONTENT_LENGTH: usize = 280 * 4;
+const MAX_CONTENT_LENGTH: usize = 255 * 4;
 const X_LENGTH: usize = 1;
 const Y_LENGTH: usize = 1;
 
@@ -55,6 +55,6 @@ impl PostIt {
 
 #[error_code]
 pub enum ErrorCode {
-    #[msg("The provided content should be 280 characters long maximum.")]
+    #[msg("The provided content should be 255 characters long maximum.")]
     ContentTooLong,
 }

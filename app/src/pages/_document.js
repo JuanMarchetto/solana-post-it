@@ -30,7 +30,7 @@ class MyDocument extends Document {
           />
           <link rel="manifest" href="/site.webmanifest" />
         </Head>
-        <body>
+        <body className="bg-gray-900 max-w-screen mx-auto overflow-x-hidden">
           <Main />
           <NextScript />
         </body>

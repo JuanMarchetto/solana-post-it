@@ -68,7 +68,7 @@
     {
       "code": 6000,
       "name": "ContentTooLong",
-      "msg": "The provided content should be 280 characters long maximum."
+      "msg": "The provided content should be 255 characters long maximum."
     }
   ],
   "metadata": {
