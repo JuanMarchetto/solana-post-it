@@ -7,7 +7,7 @@ import "tailwindcss/tailwind.css";
 import "../styles/globals.css";
 import "../styles/App.css";
 
-const endpoint = "http://127.0.0.1:8899";
+const endpoint = 'https://api.devnet.solana.com'
 
 const WalletProvider = dynamic(
   () => import("../contexts/ClientWalletProvider"),

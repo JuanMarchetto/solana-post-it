@@ -2,12 +2,14 @@
 seeds = false
 [programs.localnet]
 solana_postit = "3H1vAFf2Lbv2GRhddLQXryf6Ci23ucn4DdMGFrjMFsem"
+[programs.devnet]
+solana_postit = "3H1vAFf2Lbv2GRhddLQXryf6Ci23ucn4DdMGFrjMFsem"
 
 [registry]
 url = "https://anchor.projectserum.com"
 
 [provider]
-cluster = "localnet"
+cluster = "devnet"
 wallet = "/Users/juan/.config/solana/id.json"
 
 [scripts]

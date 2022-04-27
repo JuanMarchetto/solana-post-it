@@ -9,7 +9,7 @@ import { SolanaLogo } from "components";
 import { getPostIts, sendPostIt } from "../../utils/postits";
 import { useProgram } from "./useProgram";
 
-const endpoint = "http://localhost:8899";
+const endpoint = "https://api.devnet.solana.com";
 const connection = new anchor.web3.Connection(endpoint);
 
 export const SolanaPostItView: FC = ({ }) => {
